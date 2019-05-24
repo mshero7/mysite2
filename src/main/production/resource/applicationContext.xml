@@ -38,7 +38,6 @@
 		<property name="password" value="webdb" />
 	</bean>
 
-
 	<!-- MyBatis SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
