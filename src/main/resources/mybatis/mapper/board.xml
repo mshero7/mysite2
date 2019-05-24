@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<select id="getList" resultType="boardvo">
+		<![CDATA[
+			select a.no, a.title, a.contents, a.hit, a.reg_date, a.group_no, a.order_no,a.depth, b.name
+			from board a, user b where a.user_no = b.no;
+	 	]]>	
+	</select>
+	
+	<select id="getListByKeyowrd" parameterType="string" resultType="boardvo">
+		select a.no,a.title, a.contents, a.hit, a.reg_date, b.name
+		from board a, user b where title like #{keyword} and a.user_no = b.no;
+	</select>
+	
+	<insert id="insertView" parameterType="boardvo">
+		<![CDATA[
+		 insert into board values(null,#{title},#{contents},1,now(),#{group_no},#{order_no},${depth},${user_no})
+		]]>
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="getView" resultType="boardvo" parameterType="boardvo">
+		<![CDATA[
+			select a.no, a.title, a.contents, a.hit, a.reg_date, a.group_no, a.order_no,a.depth, b.name
+			from board a, user b where a.user_no = b.no and a.no=#{no};
+	 	]]>	
+	</select>
+	
+	<delete id="deleteView" parameterType="boardvo">
+		<![CDATA[
+			delete from board where no=#{no};
+	 	]]>
+	</delete>
+	
+	<update id="modifyView" parameterType="boardvo">
+		<![CDATA[
+			update board set title=#{title}, contents=#{contents} where no = #{no};
+	 	]]>
+	</update>
+</mapper>
