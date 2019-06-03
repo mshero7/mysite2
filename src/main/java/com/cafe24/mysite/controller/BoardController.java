@@ -78,23 +78,24 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="/write", method = RequestMethod.POST)
-	public String write(@ModelAttribute BoardVo vo, Model model) {
-		boardService.insertView(vo);
+	public String write(@ModelAttribute BoardVo vo) {
+		System.out.println("등록버튼시의 vo : " + vo);
+		
+		if(vo.getDepth()==0)
+			boardService.insertView(vo);
+		else 
+			boardService.insertAnswerView(vo);
+		
 		return "redirect:/board";
 	}
 	
 	@RequestMapping(value="/write/{no}", method = RequestMethod.GET)
 	public String writeAnswer(@ModelAttribute BoardVo vo,Model model) {
-		System.out.println("여기로 안오냥..?");
 		BoardVo view = boardService.getView(vo);
+		System.out.println("넘어온 " + view);
 		model.addAttribute("vo",view);
 		
 		return "board/write";
 	}
 	
-	@RequestMapping(value="/write/{no}", method = RequestMethod.POST)
-	public String writeAnswer(@ModelAttribute BoardVo vo) {
-		boardService.insertAnswerView(vo);
-		return "redirect:/board";
-	}
 }

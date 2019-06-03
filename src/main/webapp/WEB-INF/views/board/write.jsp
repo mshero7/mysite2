@@ -26,13 +26,22 @@
 							<th colspan="2">글쓰기</th>
 						</tr>
 						<tr>
-							<td class="label">제목</td>
+							<td class="label">제목${vo.depth }</td>
 							<td><input type="text" id="title" name="title"></td>
 						</tr>
 						<tr>
-							<td class="label">내용</td>
 							<td>
 								<textarea id="contents" name="contents"></textarea>
+							</td>
+							<td class="label" hidden="true">
+								<input type="text" id="depth" name="depth" value="${vo.depth+1}">
+								
+							</td>
+							<td class="label" hidden="true">
+								<input type="text" id="group_no" name="group_no" value="${vo.group_no }">
+							</td>
+							<td class="label" hidden="true">
+								<input type="text" id="order_no" name="order_no" value="${vo.order_no }">
 							</td>
 						</tr>
 					</table>

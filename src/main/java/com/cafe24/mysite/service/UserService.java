@@ -18,6 +18,8 @@ public class UserService {
 	public Boolean existEmail(String email) {
 		UserVo userVo = userDao.get(email);
 		
+		System.out.println(userVo);
+		
 		return userVo != null;
 	}
 	

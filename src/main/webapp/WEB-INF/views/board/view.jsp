@@ -26,8 +26,18 @@
 					<tr>
 						<td class="label">내용</td>
 						<td>
-							<div class="view-content">
-								${vo.contents }
+							<div class="view-content"  hidden="true">
+								${vo.group_no }
+							</div>
+						</td>
+						<td>
+							<div class="view-content"  hidden="true">
+								${vo.order_no }
+							</div>
+						</td>
+						<td>
+							<div class="view-content" hidden="true">
+								${vo.depth }
 							</div>
 						</td>
 					</tr>

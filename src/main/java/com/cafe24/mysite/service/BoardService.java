@@ -22,8 +22,12 @@ public class BoardService {
 	}
 	
 	public Boolean insertAnswerView(BoardVo vo) {
+		
 		BoardVo parentBoardVo = getView(vo);
+		
 		BoardVo childBoardVo = new BoardVo();
+		System.out.println("parentBoardVo : "+ parentBoardVo);
+		System.out.println("childBoardVo : "+ childBoardVo);
 		
 		childBoardVo.setGroup_no(parentBoardVo.getGroup_no());
 		childBoardVo.setOrder_no(parentBoardVo.getOrder_no());

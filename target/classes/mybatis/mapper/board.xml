@@ -15,7 +15,16 @@
 	
 	<insert id="insertView" parameterType="boardvo">
 		<![CDATA[
-		 insert into board values(null,#{title},#{contents},1,now(),#{group_no},#{order_no},${depth},${user_no})
+		 insert into board values(null,#{title},#{contents},1,now(),max(group_no),#{order_no},#{depth},#{user_no})
+		]]>
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertAnswerView" parameterType="boardvo">
+		<![CDATA[
+		 insert into board values(null,#{title},#{contents},1,now(),#{group_no},#{order_no}+1,${depth}+1,${user_no})
 		]]>
 		<selectKey keyProperty="no" resultType="long" order="AFTER">
 			select last_insert_id()
