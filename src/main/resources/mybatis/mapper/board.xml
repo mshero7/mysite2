@@ -4,37 +4,37 @@
 	<select id="getList" resultType="boardvo">
 		<![CDATA[
 			select a.no, a.title, a.contents, a.hit, a.reg_date, a.group_no, a.order_no,a.depth, b.name
-			from board a, user b where a.user_no = b.no;
+			from board a, member b where a.user_no = b.no;
 	 	]]>	
 	</select>
 	
 	<select id="getListByKeyowrd" parameterType="string" resultType="boardvo">
 		select a.no,a.title, a.contents, a.hit, a.reg_date, b.name
-		from board a, user b where title like #{keyword} and a.user_no = b.no;
+		from board a, member b where title like #{keyword} and a.user_no = b.no;
 	</select>
 	
 	<insert id="insertView" parameterType="boardvo">
 		<![CDATA[
-		 insert into board values(null,#{title},#{contents},1,now(),max(group_no),#{order_no},#{depth},#{user_no})
+		 insert into board values(default,#{title},#{contents},1,now(),max(group_no),#{order_no},#{depth},#{user_no})
 		]]>
 		<selectKey keyProperty="no" resultType="long" order="AFTER">
-			select last_insert_id()
+			select nextval('user_no_seq')
 		</selectKey>
 	</insert>
 	
 	<insert id="insertAnswerView" parameterType="boardvo">
 		<![CDATA[
-		 insert into board values(null,#{title},#{contents},1,now(),#{group_no},#{order_no}+1,${depth}+1,${user_no})
+		 insert into board values(default,#{title},#{contents},1,now(),#{group_no},#{order_no}+1,${depth}+1,${user_no})
 		]]>
 		<selectKey keyProperty="no" resultType="long" order="AFTER">
-			select last_insert_id()
+			select nextval('user_no_seq')
 		</selectKey>
 	</insert>
 	
 	<select id="getView" resultType="boardvo" parameterType="boardvo">
 		<![CDATA[
 			select a.no, a.title, a.contents, a.hit, a.reg_date, a.group_no, a.order_no,a.depth, b.name
-			from board a, user b where a.user_no = b.no and a.no=#{no};
+			from board a, member b where a.user_no = b.no and a.no=#{no};
 	 	]]>	
 	</select>
 	
