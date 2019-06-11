@@ -66,7 +66,7 @@
 	</bean>
 	
 	<!-- 이미지 업로딩 -->
-	<mvc:resources location="file:/mysite-uploads/" mapping="/images/**"/>
+	<mvc:resources location="file:/assets/images/" mapping="/images/**"/>
 	
 	
 	<!-- Interceptors -->
