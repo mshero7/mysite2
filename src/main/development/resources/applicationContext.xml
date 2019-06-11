@@ -33,7 +33,7 @@
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://192.168.1.199/webdb" />
+			value="jdbc:postgresql://192.168.1.199:5432/webdb" />
 		<property name="username" value="webdb" />
 		<property name="password" value="webdb" />
 	</bean>
